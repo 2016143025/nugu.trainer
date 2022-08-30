@@ -34,7 +34,6 @@
                 <p class="where">에이블짐 신촌점<a class="map" href="https://map.naver.com/v5/entry/place/1429980657?c=14130463.8743195,4516875.9685948,15,0,0,0,dh" target="_blank">[위치]</a></p>     
                 <p class="who"><label>트레이너: </label>ㅅㅇㅈ</p>
                 <p class="inform">기본적으로 투자와 사업을 둘 다 해본사람 테가 많이 남. 사업과 사업자의 입장을 아주 잘 이해하고 있고 어떤식으로든지 도움을 주기 위해 그 누구보다 노력함. 성격이 워낙 좋아서 사람이 무조건 좋기만 한것처럼 느낄 수 있는데, 필요할땐 엄청 날카로운 질문과 의견을 웃으면서 잘 하셔서 놀랄때가 종종있음. 진심을 다해 걱정해주고 도와 주는 투자자를 만나보고 싶다면 전수석님 꼭 추천함.</p>
-                <div style="display:inline">
                 <span class="numbers">
                     <span class="like">&#8593;10</span>
                     <span>|</span>
@@ -42,8 +41,93 @@
                 </span>
                 <button class="btlike"> 좋아요</button>
                 <button class="btdislike">싫어요</button>
-                </div>
             </form>
         </div>
+        <script>
+            let j = 0;
+            
+            fetch('trainerlist.json')
+            .then(function checkStatus(response){
+                if (response.ok){
+                    return response
+                }
+                else {throw Error("Error in request");}
+            })
+            .then(response=>response.json())
+            .then(processData)
+            .catch(function handleError(e){
+                alert("json error"+e.message)
+            });
+            function processData(data){
+                trainerjson = data;
+                addtrainer();
+            }
+            function addtrainer(){
+                for(let i=0;i<2;i++){
+                    let trainerform = document.createElement('form');
+                    trainerform.setAttribute('class','body3');
+
+                    let where = document.createElement('p');
+                    where.setAttribute('class','where');
+                    where.innerHTML = trainerjson.list[j].gym;
+
+                    let map = document.createElement('a');
+                    map.setAttribute('class','map');
+                    map.setAttribute('href',trainerjson.list[j].map);
+                    map.innerHTML = '[위치]';
+                    where.appendChild(map);
+
+                    let who = document.createElement('p');
+                    who.setAttribute('class','who');
+                    who.innerHTML = '<label>트레이너: </label>'+trainerjson.list[j].name;
+
+                    let inform = document.createElement('p');
+                    inform.setAttribute('class','inform');
+                    inform.innerHTML = trainerjson.list[j].inform
+
+                    let numbers = document.createElement('span');
+                    numbers.setAttribute('class','numbers');
+
+                    let like = document.createElement('span');
+                    like.setAttribute('class','like');
+                    like.innerHTML = "&#8593; "+trainerjson.list[j].like;
+
+                    let dislike = document.createElement('span');
+                    dislike.setAttribute('class','dislike');
+                    dislike.innerHTML = trainerjson.list[j].dislike+" &#8595;";
+                    numbers.appendChild(like);
+                    numbers.innerHTML += '<span>|</span>';
+                    numbers.appendChild(dislike);
+
+                    let btlike = document.createElement('span');
+                    btlike.setAttribute('class','btlike');
+                    btlike.innerHTML = "좋아요";
+
+                    let btdislike = document.createElement('span');
+                    btdislike.setAttribute('class','btdislike');
+                    btdislike.innerHTML = "싫어요";
+
+                    let trainerbox = document.querySelector('.body2');
+                    trainerform.appendChild(where);
+                    trainerform.appendChild(where);
+                    trainerform.appendChild(who);
+                    trainerform.appendChild(inform);
+                    trainerform.appendChild(numbers)
+                    trainerform.appendChild(btlike);
+                    trainerform.appendChild(btdislike);
+                    trainerbox.appendChild(trainerform);
+                    j = j+1;
+                    console.log(j)
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded',function (){
+                window.onscroll=()=>{
+                    if((window.innerHeight+window.scrollY)>=document.body.offsetHeight){
+                        addtrainer();
+                    };
+                };
+            })
+        </script>
     </body>
 </html>
