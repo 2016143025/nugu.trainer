@@ -1,0 +1,20 @@
+{
+    "list": [
+      {
+        "id":"list1",
+        "category":"economy",
+        "name":"ㅅㅇㅈ",
+        "price":"50,000원/hr",
+        "like":15,
+        "dislike":10
+      },
+      {
+        "id":"list1",
+        "category":"economy",
+        "name":"ㅅㅇㅈ",
+        "price":"50,000원/hr",
+        "like":15,
+        "dislike":10
+      }
+    ]
+  }
