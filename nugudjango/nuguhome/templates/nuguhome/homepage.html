@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>nugo.trainer</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <div class="body1">
+            <h1 class="name">nugu.trainer</h1>
+            <p class="line1">트레이너들의 민낯을 볼수 있는 솔직한 리뷰</p>
+            <p>nugu.trainer는 다양한 헬스장에 근무하는 헬스트레이너들의 정보를 공개합니다.</p>
+            <p>옳지 않은 의도를 가진 사람들의 후기를 방지하기 위해, 헬스장 인증을 거친 사람들만 후기를 남길 수 있습니다.</p>
+            <p>모든 리뷰는 헬스장 위치, 트레이너의 초성만 공개하고 작성자는 익명으로 보입니다.</p>
+            <button class="bt1" onclick="location.href='write.html'">트레이너후기 쓰기</button>
+            <form class="form">
+                <img class="search1" src="/static/img/serachimg.png">
+                <input class="find" type="text" name="id" maxlength="40" placeholder="헬스장 검색하기" required />
+            </form>
+        </div>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <div class="body2">
+
+        </div>
+        {% if latest_trainer_list %}
+        <script>
+            trainerjson = {list:[]}
+        </script>
+        {% for trainer in latest_trainer_list%}
+        <script>
+            trainerone = {}
+            trainerone['id']="{{trainer.id}}"
+            trainerone['gym']="{{trainer.gym}}"
+            trainerone['name']="{{trainer.name}}"
+            trainerone['like']="{{trainer.like}}"
+            trainerone['dislike']="{{trainer.dislike}}"
+            trainerone['mapurl']="{{trainer.mapurl}}"
+            trainerone['inform']="{{trainer.inform}}"
+            trainerone['created_at']="{{trainer.created_at}}"
+            trainerjson.list.push(trainerone)
+        </script>
+        {% endfor %}
+        <script>
+            console.log(trainerjson.list)
+            let j = 0;
+            addtrainer();
+            function addtrainer(){
+                for(let i=0;i<2;i++){
+                    let trainerform = document.createElement('form');
+                    trainerform.setAttribute('class','body3');
+
+                    let where = document.createElement('p');
+                    where.setAttribute('class','where');
+                    where.innerHTML = trainerjson.list[j].gym;
+                    console.log(trainerjson.list[j].gym)
+
+                    let map = document.createElement('a');
+                    map.setAttribute('class','map');
+                    map.setAttribute('href',trainerjson.list[j].map);
+                    map.innerHTML = '[위치]';
+                    where.appendChild(map);
+
+                    let who = document.createElement('p');
+                    who.setAttribute('class','who');
+                    who.innerHTML = '<label>트레이너: </label>'+trainerjson.list[j].name;
+
+                    let inform = document.createElement('p');
+                    inform.setAttribute('class','inform');
+                    inform.innerHTML = trainerjson.list[j].inform
+
+                    let numbers = document.createElement('span');
+                    numbers.setAttribute('class','numbers');
+
+                    let like = document.createElement('span');
+                    like.setAttribute('class','like');
+                    like.innerHTML = "&#8593; "+trainerjson.list[j].like;
+
+                    let dislike = document.createElement('span');
+                    dislike.setAttribute('class','dislike');
+                    dislike.innerHTML = trainerjson.list[j].dislike+" &#8595;";
+                    numbers.appendChild(like);
+                    numbers.innerHTML += '<span>  |  </span>';
+                    numbers.appendChild(dislike);
+
+                    let btlike = document.createElement('span');
+                    btlike.setAttribute('class','btlike');
+                    btlike.innerHTML = "좋아요";
+
+                    let btdislike = document.createElement('span');
+                    btdislike.setAttribute('class','btdislike');
+                    btdislike.innerHTML = "싫어요";
+
+                    let trainerbox = document.querySelector('.body2');
+                    trainerform.appendChild(where);
+                    trainerform.appendChild(where);
+                    trainerform.appendChild(who);
+                    trainerform.appendChild(inform);
+                    trainerform.appendChild(numbers)
+                    trainerform.appendChild(btlike);
+                    trainerform.appendChild(btdislike);
+                    trainerbox.appendChild(trainerform);
+                    j = j+1;
+                    console.log(j)
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded',function (){
+                window.onscroll=()=>{
+                    if((window.innerHeight+window.scrollY)>=document.body.offsetHeight){
+                        addtrainer();
+                    };
+                };
+            })
+        </script>
+        {% else %}
+            <p>No nugu.trainer are available.</p>
+        {% endif %}
+    </body>
+</html>
