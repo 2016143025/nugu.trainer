@@ -92,16 +92,30 @@ body {
     margin-right: 10px;
 }
 .like{
-    color:red;
+    color:blue;
     margin-right:10px;
 }
 .dislike{
     margin-left: 5px;
-    color:blue
+    color:red
 }
 .btlike{
-    margin-left: 470px;
+    color:gray;
+    background-color: black;
+    margin-left: 440px;
+}
+.btlike:hover{
+    background: radial-gradient(circle at 50% 50%,#606060 0%, black 100%);
 }
 .btdislike{
+    color:gray;
+    background-color: black;
     margin-left:10px
+}
+.btdislike:hover{
+    background: radial-gradient(circle at 50% 50%,#606060 0%, black 100%);
+}
+
+.formlike{
+    display: inline;
 }

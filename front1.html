@@ -30,7 +30,22 @@
         <br>
         <br>
         <div class="body2">
-
+            <div class="body3">
+                <p class="where">에이블짐 신촌점<a class="map" href="https://map.naver.com/v5/entry/place/1429980657?c=14130463.8743195,4516875.9685948,15,0,0,0,dh">[위치]</a></p>
+                <p class="who"><label>트레이너: </label>ㅅㅇㅈ</p>
+                <p class="inform">기본적으로 투자와 사업을 둘 다 해본사람 테가 많이 남. 사업과 사업자의 입장을 아주 잘 이해하고 있고 어떤식으로든지 도움을 주기 위해 그 누구보다 노력함. 성격이 워낙 좋아서 사람이 무조건 좋기만 한것처럼 느낄 수 있는데, 필요할땐 엄청 날카로운 질문과 의견을 웃으면서 잘 하셔서 놀랄때가 종종있음. 진심을 다해 걱정해주고 도와 주는 투자자를 만나보고 싶다면 전수석님 꼭 추천함. </p>
+                <span class="numbers"><span class="like">↑ 15</span>
+                <span>  |  </span>
+                <span class="dislike">10 ↓</span></span>
+                <form class="formlike" action="nuguhome\like">
+                    <input type="hidden" name="hidden" value="">
+                    <input type="submit" name="submit" class="btlike" value="좋아요">
+                </form>
+                <form class="formlike">
+                    <input type="hidden" name="hidden" value="">
+                    <input type="submit" name="submit" class="btdislike" value="싫어요">
+                </form>
+            </div>
         </div>
         <script>
             let j = 0;
@@ -88,13 +103,17 @@
                     numbers.innerHTML += '<span>  |  </span>';
                     numbers.appendChild(dislike);
 
-                    let btlike = document.createElement('span');
+                    let btlike = document.createElement('input');
                     btlike.setAttribute('class','btlike');
-                    btlike.innerHTML = "좋아요";
+                    btlike.setAttribute('type','submit');
+                    btlike.setAttribute('name','submit');
+                    btlike.setAttribute('value','좋아요')
 
-                    let btdislike = document.createElement('span');
+                    let btdislike = document.createElement('input');
                     btdislike.setAttribute('class','btdislike');
-                    btdislike.innerHTML = "싫어요";
+                    btdislike.setAttribute('type','submit');
+                    btdislike.setAttribute('name','submit');
+                    btdislike.setAttribute('value','싫어요')
 
                     let trainerbox = document.querySelector('.body2');
                     trainerform.appendChild(where);
