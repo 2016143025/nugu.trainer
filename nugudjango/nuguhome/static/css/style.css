@@ -51,6 +51,18 @@ body {
     left: 10px;
     margin: 0;
 }
+#search2{
+    position: absolute;
+    background-color: darkgrey;
+    font-family: 'Gamja Flower';
+    width: 50px;
+    height: 100%;
+    margin-left: 740px;
+    border-radius: 10px;
+}
+#search2:hover{
+    background: radial-gradient(circle at 50% 50%,#606060 0%, rgb(138, 138, 138) 100%);
+}
 .body2{
     display: block;
     width: 780px;
@@ -100,8 +112,73 @@ body {
     color:blue
 }
 .btlike{
-    margin-left: 470px;
+    color:gray;
+    background-color: black;
+    margin-left: 440px;
+}
+.btlike:hover{
+    background: radial-gradient(circle at 50% 50%,#606060 0%, black 100%);
 }
 .btdislike{
+    color:gray;
+    background-color: black;
     margin-left:10px
+}
+.btdislike:hover{
+    background: radial-gradient(circle at 50% 50%,#606060 0%, black 100%);
+}
+.formlike{
+    display: inline;
+}
+.writeform{
+    width: 780px;
+    margin: auto;
+    margin-top: 10px;
+}
+.formlabel{
+    display: inline-block;
+    font-family:'Gamja Flower';
+    margin-right: 5px;
+    color: white;
+    width: 110px;
+    margin-top: 10px;
+}
+#formlabelid{
+    display: block;
+    font-family:'Gamja Flower';
+    margin-right: 5px;
+    color: white;
+    width: 110px;
+    margin-top: 10px;
+}
+.formtext1{
+    font-family:'Gamja Flower';
+    font-size: 18px;
+    width: 200px;
+    margin-top: 10px;
+}
+.formtext2{
+    font-family:'Gamja Flower';
+    font-size: 18px;
+    position: relative;
+    bottom: 30px;
+    left: 115px;
+    margin-top: 10px;
+    width: 620px;
+    height: 300px;
+    resize: none;
+}
+.bt3{
+    position: relative;
+    bottom: 20px;
+    width: 95%;
+    height: 30px;
+    background-color: white;
+    border: 0px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 3px;
+}
+.bt3:hover{
+    background: radial-gradient(circle at 50% 50%,#b0b0b0 0%, rgb(255, 255, 255) 100%);
 }

@@ -20,7 +20,8 @@
             <p>모든 리뷰는 헬스장 위치, 트레이너의 초성만 공개하고 작성자는 익명으로 보입니다.</p>
             <button class="bt1" onclick="location.href='write.html'">트레이너후기 쓰기</button>
             <form class="form">
-                <img class="search1" src="/nugu.trainer/serachimg.png">
+                <img class="search1" src="C:\Users\sdhky\Desktop\nogu.trainer\nugu.trainer\serachimg.png">
+                <input type="button" id="search2" name="result" value="검색">
                 <input class="find" type="text" name="id" maxlength="40" placeholder="헬스장 검색하기" required />
             </form>
         </div>
@@ -64,10 +65,9 @@
             });
             function processData(data){
                 trainerjson = data;
-                addtrainer();
+                addtrainer(j);
             }
-            function addtrainer(){
-                for(let i=0;i<2;i++){
+            function addtrainer(j){
                     let trainerform = document.createElement('form');
                     trainerform.setAttribute('class','body3');
 
@@ -126,7 +126,6 @@
                     trainerbox.appendChild(trainerform);
                     j = j+1;
                     console.log(j)
-                }
             }
 
             document.addEventListener('DOMContentLoaded',function (){
@@ -135,6 +134,18 @@
                         addtrainer();
                     };
                 };
+            })
+            document.getElementById('search2').addEventListener('click',function(){
+                document.getElementsByClassName('body2')[0].innerHTML=""
+                let searchtext = document.getElementsByClassName('find')[0].value.toUpperCase();
+                console.log(searchtext)
+                console.log(trainerjson.list.length)
+                for(i=0;i<trainerjson.list.length;i++){
+                    console.log(i)
+                    if(trainerjson.list[i].gym.toUpperCase().includes(searchtext)){
+                        addtrainer(i);
+                    }
+                }
             })
         </script>
     </body>
